@@ -16,3 +16,5 @@ local.properties
 
 # Sentry Config File
 sentry.properties
+.idea
+/.idea

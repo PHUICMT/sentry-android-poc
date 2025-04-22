@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SessionReplayPoc"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
@@ -23,10 +27,11 @@
             </intent-filter>
         </activity>
 
+
         <!-- Required: set your sentry.io project identifier (DSN) -->
         <meta-data
             android:name="io.sentry.dsn"
-            android:value="http://4e86c0b115b5b8d62bc3bcf54aeaa1d5@localhost:9000/4" />
+            android:value="http://4e86c0b115b5b8d62bc3bcf54aeaa1d5@10.0.2.2:9000/4" />
 
         <!-- enable automatic breadcrumbs for user interactions (clicks, swipes, scrolls) -->
         <meta-data
@@ -41,18 +46,26 @@
             android:name="io.sentry.attach-view-hierarchy"
             android:value="true" />
 
+        <meta-data
+            android:name="io.sentry.session-replay.mask-all-text"
+            android:value="true" />
+        <meta-data
+            android:name="io.sentry.session-replay.mask-all-images"
+            android:value="true" />
+
+
         <!-- enable the performance API by setting a sample-rate, adjust in production env -->
         <meta-data
             android:name="io.sentry.traces.sample-rate"
             android:value="1.0" />
 
-        <!-- record session replays for 100% of errors and 10% of sessions -->
+        <!-- record session replays for 100% of errors and 100% of sessions -->
         <meta-data
             android:name="io.sentry.session-replay.on-error-sample-rate"
             android:value="1.0" />
         <meta-data
             android:name="io.sentry.session-replay.session-sample-rate"
-            android:value="0.1" />
+            android:value="1.0" />
     </application>
 
 </manifest>
