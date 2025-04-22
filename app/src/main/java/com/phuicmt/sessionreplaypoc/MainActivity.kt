@@ -21,14 +21,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    // waiting for view to draw to better represent a captured error with a screenshot
-    findViewById<android.view.View>(android.R.id.content).viewTreeObserver.addOnGlobalLayoutListener {
-      try {
-        throw Exception("This app uses Sentry! :)")
-      } catch (e: Exception) {
-        Sentry.captureException(e)
-      }
-    }
+        // waiting for view to draw to better represent a captured error with a screenshot
+        findViewById<android.view.View>(android.R.id.content).viewTreeObserver.addOnGlobalLayoutListener {
+            try {
+                throw Exception("This app uses Sentry! :)")
+            } catch (e: Exception) {
+                Sentry.captureException(e)
+            }
+        }
 
 
         binding = ActivityMainBinding.inflate(layoutInflater)
